@@ -83,10 +83,10 @@
 
 **Restrições organizacionais:**
 
-- A estrutura atual (1 sala, 1 dentista fixa) limita a quantidade de atendimentos simultâneos — isso importa para o modelo porque não há, hoje, necessidade de representar múltiplas salas ou múltiplos atendimentos simultâneos, mas o modelo deve permitir essa expansão futura.
+- A estrutura atual (1 sala, 1 dentista fixa) limita a quantidade de atendimentos simultâneos, isso importa para o modelo porque não há, hoje, necessidade de representar múltiplas salas ou múltiplos atendimentos simultâneos, mas o modelo deve permitir essa expansão futura.
 - O atendimento por convênio está em fase de implantação; as regras específicas (autorização, múltiplos convênios por paciente) ainda não estão definidas na prática, então o modelo trata essa entidade de forma mais enxuta, pensando em expansão posterior.
-- O acesso às informações do paciente é hoje restrito exclusivamente à dentista — restrição de privacidade que deve ser preservada no sistema.
-- Não existe, atualmente, identificador único formal por paciente (a identificação é feita por nome) — isso é um risco de duplicidade que o modelo corrige ao propor uma chave primária gerada pelo sistema.
+- O acesso às informações do paciente é hoje restrito exclusivamente à dentista, restrição de privacidade que deve ser preservada no sistema.
+- Não existe, atualmente, identificador único formal por paciente (a identificação é feita por nome), isso é um risco de duplicidade que o modelo corrige ao propor uma chave primária gerada pelo sistema.
 
 ---
 
