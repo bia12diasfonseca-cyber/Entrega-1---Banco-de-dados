@@ -142,6 +142,16 @@
 
 ## 9. Uso de Inteligência Artificial
 
+| Item | Registro |
+|------|------------------|
+| **Ferramenta e etapa** | Claude (Anthropic) — utilizado na organização das respostas da entrevista de campo e na redação do README (caracterização da organização, requisitos, regras de negócio, dicionário de dados, modelagem conceitual e justificativa técnica). |
+| **Motivação** | O grupo já havia realizado a entrevista presencial na clínica e precisava estruturar as respostas no formato exigido pelo esqueleto do README, incluindo a identificação de entidades, atributos e cardinalidades a partir das respostas obtidas. |
+| **Prompt(s) utilizados** | *[preencher com o texto exato ou muito próximo dos prompts enviados — ex.: "vc pode me ajudar em um trabalho... eu vou te enviar a entrevista que eu fiz com a empresa e vc me fala as informações que vc precisa" e, em seguida, o envio do PDF da entrevista pedindo a montagem do README]* |
+| **Resposta recebida** | A IA solicitou inicialmente as informações necessárias (nome/tipo da organização, evidências de existência, processos, regras e dados coletados) e, após o envio da entrevista, gerou uma proposta de README completo, incluindo entidades, atributos, relacionamentos e cardinalidades derivados das respostas da entrevista. |
+| **Fontes consultadas e verificadas** | Nenhuma fonte externa foi usada — todo o conteúdo foi derivado exclusivamente das respostas da entrevista de campo feita pelo próprio grupo na clínica. |
+| **Trechos rejeitados ou corrigidos** | *[preencher — descrever o que o grupo revisou, ajustou ou removeu do texto gerado, comparando com o que foi observado na visita. Ex.: eventuais atributos sugeridos que não correspondem à realidade da clínica]* |
+| **Justificativa da escolha final** | *[preencher — por que o grupo manteve, adaptou ou rejeitou o que foi sugerido]* |
+| **Reflexão crítica** | A IA não teve acesso direto à clínica, apenas ao texto da entrevista — por isso, atributos como `data_nascimento` e `id_paciente` foram propostos como recomendações de boas práticas de modelagem, não como dados hoje efetivamente coletados pela clínica, e devem ser validados pelo grupo. Há também risco de a IA ter generalizado processos comuns a clínicas odontológicas que não necessariamente se aplicam a esta clínica específica (ex.: regras de convênio, que ainda estão em implantação e não foram detalhadas na entrevista). |
 
 ---
 
