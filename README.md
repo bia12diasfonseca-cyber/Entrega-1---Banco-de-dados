@@ -6,7 +6,7 @@
 ## Metadados
 
 - **Nomes dos alunos e RGM:** Beatriz Fonseca Dias 47272139
-  Vitória Aparecida de Assis Silva 46625909
+- Vitória Aparecida de Assis Silva 46625909
 
 ---
 
