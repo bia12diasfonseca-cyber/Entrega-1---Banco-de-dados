@@ -25,7 +25,7 @@
   - **Responsável pela organização:** Tamires (dentista e proprietária da clínica)
   - **Foto da visita de campo:**
 
-    ![Foto da visita à Clínica Sued Odontologia Humanizada](imagens/foto_visita.jpg)
+    ![Foto da visita à Clínica Sued Odontologia Humanizada](imagens/foto_visita.jpeg)
 
 ---
 
