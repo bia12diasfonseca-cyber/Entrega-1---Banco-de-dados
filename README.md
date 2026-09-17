@@ -5,7 +5,7 @@
 
 ## Metadados
 
-- **Nomes dos alunos e RGM:** *[preencher — nome completo e RGM de cada integrante do grupo]*
+- **Nomes dos alunos e RGM:** 
 
 ---
 
