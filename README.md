@@ -37,7 +37,6 @@
 5. **Pagamento** — pode ocorrer antes ou depois do atendimento, à vista ou parcelado, em pix, crédito, débito ou dinheiro. Não há registro sistematizado — o controle é feito apenas por meio do prontuário físico.
 6. **(Processo em implantação) Convênios** — a clínica está iniciando o atendimento por convênio; as regras específicas (autorização de procedimentos, múltiplos convênios por paciente etc.) ainda não estão consolidadas.
 
-**Fluxogramas:** *(opcional — não incluído nesta entrega; caso o grupo opte por representar visualmente os processos acima, anexar as imagens aqui)*
 
 ---
 
