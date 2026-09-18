@@ -114,16 +114,16 @@
 
 **Atributos e classificações** *(conforme o DER anexado):*
 
-- **Paciente:** `id_paciente` (chave primária, simples); `nome` (simples, obrigatório); `data_nascimento` (simples); `info_saude` (simples — dado sensível, de acesso restrito).
+- **Paciente:** `id_paciente` (chave primária, simples); `nome` (simples, obrigatório); `data_nascimento` (simples); `info_saude` (simples, dado sensível, de acesso restrito).
 - **Convênio:** `id_convenio` (chave primária, simples); `nome` (simples, obrigatório).
 - **Telefone:** `id_telefone` (chave primária, simples); `numero` (simples, obrigatório). Modelado como entidade separada — e não como atributo multivalorado de Paciente — porque um paciente pode ter mais de um telefone, representado pelo relacionamento **possui** (1,1)–(1,n) entre Paciente e Telefone.
 - **Tratamento:** `id_tratamento` (chave primária, simples); `nome` (simples, obrigatório); `data_inicio` (simples); `descrição` (simples, opcional); `observações` (simples, opcional).
 - **Agendamento:** `id_agendamento` (chave primária, simples); `data_hora` (simples, obrigatório); `status` (simples, categórico); `observações` (simples, opcional).
 - **Dentista:** `id_dentista` (chave primária, simples); `nome` (simples, obrigatório).
-- **Especialidade:** `id_especialidade` (chave primária, simples); `nome` (simples, obrigatório). Também modelada como entidade separada — e não como atributo multivalorado de Dentista — porque um dentista pode ter mais de uma especialidade, representado pelo relacionamento **tem** (0,n)–(1,n) entre Dentista e Especialidade.
+- **Especialidade:** `id_especialidade` (chave primária, simples); `nome` (simples, obrigatório). Também modelada como entidade separada, e não como atributo multivalorado de Dentista, porque um dentista pode ter mais de uma especialidade, representado pelo relacionamento **tem** (0,n)–(1,n) entre Dentista e Especialidade.
 - **Pagamento:** `id_pagamento` (chave primária, simples); `valor` (simples, obrigatório); `forma_pagamento` (simples, categórico); `status` (simples, categórico); `observações` (simples, opcional).
 
-Não há atributos compostos ou derivados identificados no modelo. Os dois casos que poderiam ser multivalorados (telefones do paciente e especialidades do dentista) foram resolvidos como entidades próprias relacionadas — uma alternativa de modelagem tão válida quanto o atributo multivalorado, e que evita repetição de valores dentro de um mesmo registro.
+Não há atributos compostos ou derivados identificados no modelo. Os dois casos que poderiam ser multivalorados (telefones do paciente e especialidades do dentista) foram resolvidos como entidades próprias relacionadas, uma alternativa de modelagem tão válida quanto o atributo multivalorado, e que evita repetição de valores dentro de um mesmo registro.
 
 **Relacionamentos pertinentes:**
 
@@ -135,8 +135,6 @@ Não há atributos compostos ou derivados identificados no modelo. Os dois casos
 - **Dentista — Tratamento** (*realiza*, 1,1 : 0,n): cada tratamento tem um único dentista responsável; um dentista pode realizar zero ou vários tratamentos.
 - **Dentista — Especialidade** (*tem*, 0,n : 1,n): um dentista pode ter zero ou várias especialidades; toda especialidade cadastrada deve estar associada a pelo menos um dentista.
 - **Agendamento — Pagamento** (*gera*, 1,1 : 0,n): cada pagamento é originado por um único agendamento; um agendamento pode gerar zero ou vários pagamentos (o que sustenta o parcelamento relatado na entrevista).
-
-> ⚠️ Duas observações para o grupo conferir no diagrama original, já que a extração do PDF deixou esses pontos com alguma margem de dúvida: (1) a relação Paciente–Convênio aparece no diagrama como N:M (0,n de ambos os lados), mas no Dicionário de Dados em HTML essa mesma relação está descrita como N:1 (um paciente, no máximo um convênio) — vale alinhar os dois documentos. (2) A associação de "agenda" a Dentista–Agendamento e de "realiza" a Dentista–Tratamento foi feita pelo sentido dos verbos; confirmem se é isso mesmo que está desenhado.
 
 **Restrições e políticas organizacionais aplicadas ao modelo:**
 
