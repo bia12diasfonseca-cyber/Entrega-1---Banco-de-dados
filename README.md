@@ -95,7 +95,7 @@
 
 ## 5. Dicionário de Dados Conceitual (Preliminar)
 
- !Dicionário de Dados](imagens/dicionáriodedados.jpeg)
+ ![Dicionário de Dados](Dicionariodedados.pdf)
 
 ---
 
