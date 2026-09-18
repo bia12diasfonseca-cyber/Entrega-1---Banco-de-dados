@@ -126,7 +126,7 @@
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
 
- ![Diagrama Entidade-Relacionamento](imagens/DiagramaDER.pdf)
+ ![Diagrama Entidade-Relacionamento](DiagramaDER.pdf)
 
 ---
 
