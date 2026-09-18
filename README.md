@@ -95,7 +95,7 @@
 
 ## 5. Dicionário de Dados Conceitual (Preliminar)
 
- ![Dicionário de Dados](dicionario_dados.html)
+📄 **[Dicionário de Dados (HTML)](LINK_DO_ARQUIVO_AQUI)**
 
 ---
 
