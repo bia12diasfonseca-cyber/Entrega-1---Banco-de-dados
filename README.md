@@ -101,26 +101,50 @@
 
 ## 6. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
 
-**Entidades reconhecidas:** Paciente, Dentista, Agendamento, Atendimento, Procedimento, Tratamento e Pagamento, além da entidade associativa Atendimento_Procedimento (para representar o relacionamento N:M entre atendimento e procedimento, com preço praticado naquele caso específico).
+**Entidades reconhecidas:**
+
+- **Paciente** — pessoa física atendida pela clínica; entidade central do modelo.
+- **Convênio** — plano/operadora ao qual o paciente pode estar vinculado; modelado como entidade separada por poder ser compartilhado entre vários pacientes e por não fazer parte, estruturalmente, dos dados fixos do paciente.
+- **Telefone** — contato do paciente; modelado como entidade separada porque um paciente pode ter mais de um telefone.
+- **Dentista** — profissional responsável pelos agendamentos e tratamentos.
+- **Especialidade** — área de atuação odontológica; modelada como entidade separada porque um dentista pode ter mais de uma especialidade e uma mesma especialidade pode ser compartilhada por vários dentistas.
+- **Tratamento** — conjunto de cuidados/procedimentos conduzidos por um dentista para um paciente, acompanhado ao longo do tempo.
+- **Agendamento** — evento de marcação de consulta entre um paciente e um dentista.
+- **Pagamento** — registro financeiro gerado a partir de um agendamento.
+
+**Atributos e classificações** *(conforme o DER anexado):*
+
+- **Paciente:** `id_paciente` (chave primária, simples); `nome` (simples, obrigatório); `data_nascimento` (simples); `info_saude` (simples — dado sensível, de acesso restrito).
+- **Convênio:** `id_convenio` (chave primária, simples); `nome` (simples, obrigatório).
+- **Telefone:** `id_telefone` (chave primária, simples); `numero` (simples, obrigatório). Modelado como entidade separada — e não como atributo multivalorado de Paciente — porque um paciente pode ter mais de um telefone, representado pelo relacionamento **possui** (1,1)–(1,n) entre Paciente e Telefone.
+- **Tratamento:** `id_tratamento` (chave primária, simples); `nome` (simples, obrigatório); `data_inicio` (simples); `descrição` (simples, opcional); `observações` (simples, opcional).
+- **Agendamento:** `id_agendamento` (chave primária, simples); `data_hora` (simples, obrigatório); `status` (simples, categórico); `observações` (simples, opcional).
+- **Dentista:** `id_dentista` (chave primária, simples); `nome` (simples, obrigatório).
+- **Especialidade:** `id_especialidade` (chave primária, simples); `nome` (simples, obrigatório). Também modelada como entidade separada — e não como atributo multivalorado de Dentista — porque um dentista pode ter mais de uma especialidade, representado pelo relacionamento **tem** (0,n)–(1,n) entre Dentista e Especialidade.
+- **Pagamento:** `id_pagamento` (chave primária, simples); `valor` (simples, obrigatório); `forma_pagamento` (simples, categórico); `status` (simples, categórico); `observações` (simples, opcional).
+
+Não há atributos compostos ou derivados identificados no modelo. Os dois casos que poderiam ser multivalorados (telefones do paciente e especialidades do dentista) foram resolvidos como entidades próprias relacionadas — uma alternativa de modelagem tão válida quanto o atributo multivalorado, e que evita repetição de valores dentro de um mesmo registro.
 
 **Relacionamentos pertinentes:**
 
-- **Paciente — Agendamento:** um paciente pode ter vários agendamentos (1:N); um agendamento pertence a um único paciente.
-- **Dentista — Agendamento:** um dentista pode ter vários agendamentos (1:N); um agendamento é feito com um único dentista.
-- **Agendamento — Atendimento:** um agendamento dá origem a, no máximo, um atendimento efetivo (1:1 opcional, já que agendamentos podem ser cancelados ou resultar em falta).
-- **Paciente — Atendimento:** um paciente pode ter vários atendimentos ao longo do tempo (1:N).
-- **Dentista — Atendimento:** um dentista realiza vários atendimentos (1:N); como um paciente pode ser atendido por dentistas diferentes conforme a especialidade necessária, a relação paciente–dentista, no todo, é N:M, materializada através da entidade Atendimento.
-- **Atendimento — Procedimento (via Atendimento_Procedimento):** um atendimento pode envolver vários procedimentos, e um procedimento pode aparecer em vários atendimentos (N:M), com o preço efetivamente praticado registrado na entidade associativa.
-- **Procedimento — Procedimento:** auto-relacionamento opcional representando o pré-requisito entre procedimentos.
-- **Paciente — Tratamento:** um paciente pode ter vários tratamentos ao longo do tempo (1:N).
-- **Tratamento — Atendimento:** um tratamento agrupa vários atendimentos (1:N), permitindo acompanhar a evolução de procedimentos que exigem múltiplas sessões.
-- **Atendimento — Pagamento:** um atendimento pode ter vários pagamentos (1:N), suportando parcelamento e pagamentos combinados.
+- **Paciente — Convênio** (*possui*, 0,n : 0,n): um paciente pode estar associado a um ou mais convênios, ou a nenhum (atendimento particular); um convênio pode estar associado a vários pacientes.
+- **Paciente — Telefone** (*possui*, 1,1 : 1,n): cada telefone pertence a exatamente um paciente; todo paciente possui pelo menos um telefone cadastrado (participação obrigatória).
+- **Paciente — Tratamento** (*possui*, 1,1 : 0,n): cada tratamento pertence a um único paciente; um paciente pode ter zero ou vários tratamentos ao longo do tempo.
+- **Paciente — Agendamento** (*marca*, 1,1 : 0,n): cada agendamento é marcado por um único paciente; um paciente pode ter zero ou vários agendamentos.
+- **Dentista — Agendamento** (*agenda*, 1,1 : 0,n): cada agendamento é conduzido por um único dentista; um dentista pode ter zero ou vários agendamentos.
+- **Dentista — Tratamento** (*realiza*, 1,1 : 0,n): cada tratamento tem um único dentista responsável; um dentista pode realizar zero ou vários tratamentos.
+- **Dentista — Especialidade** (*tem*, 0,n : 1,n): um dentista pode ter zero ou várias especialidades; toda especialidade cadastrada deve estar associada a pelo menos um dentista.
+- **Agendamento — Pagamento** (*gera*, 1,1 : 0,n): cada pagamento é originado por um único agendamento; um agendamento pode gerar zero ou vários pagamentos (o que sustenta o parcelamento relatado na entrevista).
+
+> ⚠️ Duas observações para o grupo conferir no diagrama original, já que a extração do PDF deixou esses pontos com alguma margem de dúvida: (1) a relação Paciente–Convênio aparece no diagrama como N:M (0,n de ambos os lados), mas no Dicionário de Dados em HTML essa mesma relação está descrita como N:1 (um paciente, no máximo um convênio) — vale alinhar os dois documentos. (2) A associação de "agenda" a Dentista–Agendamento e de "realiza" a Dentista–Tratamento foi feita pelo sentido dos verbos; confirmem se é isso mesmo que está desenhado.
 
 **Restrições e políticas organizacionais aplicadas ao modelo:**
 
-- Exclusividade de horário por dentista (um horário não comporta dois pacientes com o mesmo profissional).
-- Cadastro mínimo obrigatório de paciente (nome e telefone).
-- Acesso à informação do paciente restrito à dentista responsável.
+- Todo paciente deve ter ao menos um telefone de contato cadastrado (participação obrigatória de Paciente em Telefone).
+- O vínculo com convênio é opcional — paciente sem convênio é tratado como particular.
+- Todo agendamento deve estar necessariamente associado a um paciente e a um dentista (nunca fica sem vínculo).
+- Toda especialidade cadastrada deve estar associada a pelo menos um dentista (cardinalidade mínima 1 do lado Especialidade).
+- Acesso à informação de saúde do paciente (`info_saude`) é restrito à dentista responsável.
 
 ---
 
