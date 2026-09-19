@@ -150,6 +150,8 @@ Não há atributos compostos ou derivados identificados no modelo. Os dois casos
 
  ![Diagrama Entidade-Relacionamento](DiagramaDER.jpg)
 
+  ![Diagrama Entidade-Relacionamento em pdf](DiagramaDER.pdf)
+
 ---
 
 ## 8. Justificativa Técnica
