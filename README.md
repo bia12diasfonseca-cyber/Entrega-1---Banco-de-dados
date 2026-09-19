@@ -148,7 +148,7 @@ Não há atributos compostos ou derivados identificados no modelo. Os dois casos
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
 
- ![Diagrama Entidade-Relacionamento](DiagramaDER.pdf)
+ ![Diagrama Entidade-Relacionamento](DiagramaDER.jpg)
 
 ---
 
